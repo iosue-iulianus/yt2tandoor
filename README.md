@@ -2,6 +2,8 @@
 
 A Telegram bot that converts cooking videos into structured recipes and publishes them to a self-hosted [Tandoor](https://github.com/TandoorRecipes/recipes) instance. Send a link, get a recipe.
 
+Built for the countless cooking videos on YouTube, Instagram, and TikTok that talk through a recipe but never actually write it down anywhere. No more rewinding and pausing to catch ingredient amounts — this transcribes the audio and extracts a proper recipe with ingredients, steps, and timings.
+
 ## Features
 
 - Paste a YouTube, Instagram Reel, or TikTok link and get a full recipe in Tandoor
