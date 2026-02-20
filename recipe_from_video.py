@@ -409,7 +409,7 @@ def main():
         choices=["tiny", "base", "small", "medium", "large", "large-v3"],
         help="Whisper model size (default: medium)",
     )
-    parser.add_argument("--language", default="en", help="Whisper language code (default: en)")
+    parser.add_argument("--language", default=None, help="Whisper language code (default: auto-detect)")
     parser.add_argument("--keep-audio", action="store_true", help="Keep downloaded audio file")
     parser.add_argument("--transcript-only", action="store_true", help="Only transcribe, skip extraction")
     parser.add_argument("--no-publish", action="store_true", help="Skip the publish step")

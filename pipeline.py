@@ -40,7 +40,7 @@ class PipelineConfig:
     tandoor_url: str
     tandoor_api_key: str
     whisper_model: str = "medium"
-    language: str = "en"
+    language: str | None = None  # None = auto-detect
 
 
 @dataclass
@@ -256,7 +256,7 @@ def download_audio(url: str, output_dir: str) -> str:
     raise PipelineError("No audio file found after download.")
 
 
-def transcribe_audio(audio_path: str, model_name: str = "medium", language: str = "en",
+def transcribe_audio(audio_path: str, model_name: str = "medium", language: str | None = None,
                      progress_cb: Callable[[str], None] | None = None) -> str:
     """Transcribe audio using Whisper."""
     import whisper
@@ -278,7 +278,10 @@ def transcribe_audio(audio_path: str, model_name: str = "medium", language: str 
 
     try:
         model = whisper.load_model(model_name)
-        result = model.transcribe(audio_path, language=language)
+        transcribe_kwargs = {"fp16": False}
+        if language:
+            transcribe_kwargs["language"] = language
+        result = model.transcribe(audio_path, **transcribe_kwargs)
         transcript = result["text"].strip()
         return transcript
     finally:
