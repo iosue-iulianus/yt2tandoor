@@ -1,0 +1,16 @@
+services:
+  yt2tandoor:
+    build: .
+    container_name: yt2tandoor
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TANDOOR_URL=${TANDOOR_URL:-http://recipes.lan}
+      - TANDOOR_API_KEY=${TANDOOR_API_KEY}
+      - ALLOWED_TELEGRAM_CHATS=${ALLOWED_TELEGRAM_CHATS:-}
+      - WHISPER_MODEL=${WHISPER_MODEL:-medium}
+    volumes:
+      - ./config:/home/appuser/.config/yt2tandoor
+      - ./claude-config:/home/appuser/.claude
+      - ./data:/app/data

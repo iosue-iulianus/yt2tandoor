@@ -1,0 +1,10 @@
+.env
+config/
+claude-config/
+data/
+__pycache__/
+*.pyc
+*.json
+!requirements.txt
+!docker-compose.yml
+!.env.example
